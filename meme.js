@@ -7,20 +7,21 @@ $(document).ready(function(){
         console.log(response);
 
 
-        const keys = Object.keys(response.data.memes)
-        keys.forEach(key=> $('ul').append(`<li>${key}</li>`))
+        
+        for( i = 0 ; i <= 100 ; i++){
+            $("ul").append(`<li> ${response.data.data.memes[i].name} </li>`)
+            $("p").after(`<img src= ${response.data.data.memes[i].url} />`);
 
-        $("p").text(response.data.memes.name)
-        $("img").attr("src",`${response.data.memes.url}`)
-        // $("p").after(`<img src= ${response.data.memes.url} />`);
 
+        }
+        
         $('li').on('click', function(){
-            $('img').hide()
-        })
+           $('img').hide();
+         })
         
 
-        const search = memes.filter($("form"))
-            console.log(search)
+    //     const search = memes.filter($("form"))
+    //         console.log(search)
         
     })
     .catch((error) => {
