@@ -4,14 +4,18 @@ $(document).ready(function () {
         url: 'https://api.imgflip.com/get_memes'
     })
     .then(response => {
-        console.log(response)
-        response.data.data.memes.forEach( meme => {
-            $("div").append(`<img src=${meme.url}>`)
-            $("div").append(`<span><b>${meme.name}</span>`)
-            $("img").css({width: meme.width, height: meme.height})        
+        response.data.data.memes.forEach( item => {
+            $("body").append(`<div class="card" style="width: 18rem;">
+            <img src=${item.url} class="card-img-top">
+            <div class="card-body">
+            <h5 class="card-title"><span class="badge badge-secondary">${item.name}</span></h5>
+            </div>
+            </div>
+            `)
+            $("img").css({width: item.width, height: item.height})        
         }
         )
     })
 
-    .catch()
+    .catch(error => $("body").append(`<h4>${error}</h4>`))
 } )
